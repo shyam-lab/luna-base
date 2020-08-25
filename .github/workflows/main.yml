@@ -16,7 +16,7 @@ jobs:
         cd ${HOME}
         choco install wget
         wget -r 'ftp://ftp.fftw.org/pub/fftw/fftw-3.3.5-dll64.zip'
-        tar -xzvf fftw-3.3.5-dll64.zip
+        tar -xzvf ftp.fftw.org/pub/fftw/fftw-3.3.5-dll64.zip
         mkdir fftw-3.3.5
         cp -R ftp.fftw.org/pub/fftw/* fftw-3.3.5
         cd fftw-3.3.5
