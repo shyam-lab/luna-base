@@ -24,6 +24,6 @@ jobs:
         cd ${GITHUB_WORKSPACE}
     - name: Make
       run: |
-        make FFTW=${HOME}/fftw-3.3.8
+        make ARCH=WINDOWS FFTW=${HOME}/fftw-3.3.8
         ./luna
 
