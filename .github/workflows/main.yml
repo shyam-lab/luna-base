@@ -17,18 +17,15 @@ jobs:
         choco install wget
         wget -r 'ftp://ftp.fftw.org/pub/fftw/fftw-3.3.5-dll64.zip'
         tar -xzvf ftp.fftw.org/pub/fftw/fftw-3.3.5-dll64.zip
-        mkdir fftw-3.3.5
-        cp -R ftp.fftw.org/pub/fftw/* fftw-3.3.5
-        cd fftw-3.3.5
+        cd ftp.fftw.org/pub/fftw/
         ls
         mkdir include
         mkdir lib
         mv *.h include/
         mv *.dll lib/
         ls
-        echo ${HOME}/fftw-3.3.5
         cd ${GITHUB_WORKSPACE}
         echo ${GITHUB_WORKSPACE}
     - name: Make
       run: |
-        make ARCH=WINDOWS FFTW=${HOME}\fftw-3.3.5
+        make ARCH=WINDOWS FFTW=${HOME}\fftw-3.3.5\
