@@ -31,4 +31,4 @@ jobs:
         echo ${GITHUB_WORKSPACE}
     - name: Make
       run: |
-        make ARCH=WINDOWS FFTW=${HOME}/fftw-3.3.5
+        make ARCH=WINDOWS FFTW=${HOME}\fftw-3.3.5
