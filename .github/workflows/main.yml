@@ -24,7 +24,10 @@ jobs:
         mkdir lib
         mv *.h include/
         mv *.dll lib/
+        ls -lrt
+        echo ${HOME}/fftw-3.3.5
         cd ${GITHUB_WORKSPACE}
+        echo ${GITHUB_WORKSPACE}
     - name: Make
       run: |
         make ARCH=WINDOWS FFTW=${HOME}/fftw-3.3.5
