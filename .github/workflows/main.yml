@@ -14,28 +14,35 @@ jobs:
       - name: Install fftw
         run: |
           ls -lrt
+          pwd
+          echo "github workspace is"
+          echo ${GITHUB_WORKSPACE}
+          echo "home is"
+          echo ${HOME}
+          cd $HOME
           wget http://www.fftw.org/fftw-3.3.8.tar.gz
           tar -xzvf fftw-3.3.8.tar.gz
           cd fftw-3.3.8
-          ./configure --enable-shared --prefix=/home/runner/work/luna-base/luna-base/fftw-3.3.8/
+          ./configure --enable-shared --prefix=${HOME}/fftw-3.3.8/
           make
           make install
-          cd ..
+          cd ${GITHUB_WORKSPACE}
       - name: Make
-        run: make arch=MAC FFTW=/home/runner/work/luna-base/luna-base/fftw-3.3.8
+        run: make arch=MAC FFTW=${HOME}/fftw-3.3.8
   linux-build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Install fftw
       run: |
+        cd ${HOME}
         wget http://www.fftw.org/fftw-3.3.8.tar.gz
         tar -xzvf fftw-3.3.8.tar.gz
         cd fftw-3.3.8
-        ./configure --enable-shared --prefix=/home/runner/work/luna-base/luna-base/fftw-3.3.8/
+        ./configure --enable-shared --prefix=${HOME}/fftw-3.3.8/
         make
         make install
-        cd ..
+        cd ${GITHUB_WORKSPACE}
     - name: make
-      run: make FFTW=/home/runner/work/remnrem/luna-base/fftw-3.3.8
+      run: make FFTW=${HOME}/fftw-3.3.8
 
