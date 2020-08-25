@@ -7,10 +7,23 @@ on:
     branches: master
 
 jobs:
-  build:
-
+  macos-build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install fftw
+        run: |
+          wget http://www.fftw.org/fftw-3.3.8.tar.gz
+          tar -xzvf fftw-3.3.8.tar.gz
+          cd fftw-3.3.8
+          ./configure --enable-shared --prefix=/home/runner/work/luna-base/luna-base/fftw-3.3.8/
+          make
+          make install
+          cd ..
+      - name: Make
+        run: make arch=MAC FFTW=/home/runner/work/luna-base/luna-base/fftw-3.3.8
+  linux-build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Install fftw
@@ -18,9 +31,10 @@ jobs:
         wget http://www.fftw.org/fftw-3.3.8.tar.gz
         tar -xzvf fftw-3.3.8.tar.gz
         cd fftw-3.3.8
-        ./configure --prefix=/home/runner/work/remnrem/luna-base/fftw-3.3.8/
+        ./configure --enable-shared --prefix=/home/runner/work/luna-base/luna-base/fftw-3.3.8/
         make
         make install
         cd ..
     - name: make
       run: make FFTW=/home/runner/work/remnrem/luna-base/fftw-3.3.8
+
