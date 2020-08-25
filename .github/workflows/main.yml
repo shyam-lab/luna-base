@@ -13,7 +13,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install fftw
       run: |
+        echo "PWD is "
+        pwd
+        echo "Home is " ${HOME} 
         cd ${HOME}
+        echo "Now PWD is"
+        pwd
         choco install wget
         wget http://www.fftw.org/fftw-3.3.8.tar.gz
         tar -xzvf fftw-3.3.8.tar.gz
@@ -21,6 +26,7 @@ jobs:
         ./configure --enable-shared --prefix=${HOME}/fftw-3.3.8/
         make
         make install
+        echo "GITHUB workspace is" ${GITHUB_WORKSPACE}
         cd ${GITHUB_WORKSPACE}
     - name: Make
       run: |
