@@ -24,7 +24,7 @@ jobs:
         mkdir lib
         mv *.h include/
         mv *.dll lib/
-        ls -lrt
+        ls
         echo ${HOME}/fftw-3.3.5
         cd ${GITHUB_WORKSPACE}
         echo ${GITHUB_WORKSPACE}
