@@ -13,22 +13,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install fftw
       run: |
-        cd ${HOME}
-        choco install wget
-        wget -r 'ftp://ftp.fftw.org/pub/fftw/fftw-3.3.5-dll64.zip'
-        tar -xzvf ftp.fftw.org/pub/fftw/fftw-3.3.5-dll64.zip
-        mkdir fftw-3.3.5
-        cp -R ftp.fftw.org/pub/fftw/* fftw-3.3.5
-        cd fftw-3.3.5
-        mkdir include
-        mkdir lib
-        mv *.h include/
-        mv *.dll lib/
-        ls
-        echo ${HOME}/fftw-3.3.5
-        cd ${GITHUB_WORKSPACE}
-        echo ${GITHUB_WORKSPACE}
+        pacman -S mingw-w64-x86_64-fftw
     - name: Make
       run: |
-        make ARCH=WINDOWS FFTW=${HOME}/fftw-3.3.5
+        make ARCH=WINDOWS
 
