@@ -28,7 +28,9 @@ jobs:
           make install
           cd ${GITHUB_WORKSPACE}
       - name: Make
-        run: make arch=MAC FFTW=${HOME}/fftw-3.3.8
+        run: |
+          make arch=MAC FFTW=${HOME}/fftw-3.3.8
+          luna
   linux-build:
     runs-on: ubuntu-latest
     steps:
@@ -44,5 +46,7 @@ jobs:
         make install
         cd ${GITHUB_WORKSPACE}
     - name: make
-      run: make FFTW=${HOME}/fftw-3.3.8
+      run: |
+        make FFTW=${HOME}/fftw-3.3.8
+        luna
 
