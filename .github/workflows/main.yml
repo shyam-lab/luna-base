@@ -18,6 +18,8 @@ jobs:
         ls C:\msys64
         ls C:\msys64\usr
         ls C:\msys64\usr\bin
+        echo "Path is "
+        echo ${PATH}
         cd ${HOME}
         choco install msys2
         refreshenv
