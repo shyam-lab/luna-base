@@ -24,7 +24,7 @@ jobs:
         refreshenv
         C:\msys64\usr\bin\pacman.exe -S mingw-w64-x86_64-zlib
         C:\msys64\usr\bin\pacman.exe -S mingw-w64-x86_64-toolchain
-        C:\msys64\usr\bin\pacman.exe -S fftw3
+        C:\msys64\usr\bin\pacman.exe -S mingw-w64-x86_64-fftw
         cd ${GITHUB_WORKSPACE}
         echo ${GITHUB_WORKSPACE}
     - name: Make
