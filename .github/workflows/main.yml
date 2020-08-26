@@ -14,16 +14,11 @@ jobs:
     - name: Install fftw
       run: |
         cd ${HOME}
-        choco install wget
-        wget -r 'ftp://ftp.fftw.org/pub/fftw/fftw-3.3.5-dll64.zip'
-        tar -xzvf ftp.fftw.org/pub/fftw/fftw-3.3.5-dll64.zip
-        cd ftp.fftw.org/pub/fftw/
-        ls
-        mkdir include
-        mkdir lib
-        mv *.h include/
-        mv *.dll lib/
-        ls
+        choco install msys2
+        refreshenv
+        pacman -S mingw-w64-x86_64-zlib
+        pacman -S mingw-w64-x86_64-toolchain
+        pacman -S fftw3-dev
         cd ${GITHUB_WORKSPACE}
         echo ${GITHUB_WORKSPACE}
     - name: Make
