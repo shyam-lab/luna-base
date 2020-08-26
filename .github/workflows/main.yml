@@ -20,12 +20,9 @@ jobs:
       run: |
         echo "Path is " ${PATH}
         cd ${HOME}
-        choco install msys2
-        refreshenv
         pacman.exe -S --noconfirm mingw-w64-x86_64-zlib
         pacman.exe -S --noconfirm mingw-w64-x86_64-toolchain
         pacman.exe -S --noconfirm mingw-w64-x86_64-fftw
-        pacman.exe -Ss fftw
         cd ${GITHUB_WORKSPACE}
         echo ${GITHUB_WORKSPACE}
     - name: Make
