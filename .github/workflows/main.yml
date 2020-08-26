@@ -13,13 +13,13 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install fftw
       run: |
-        echo ${PATH}
+        echo $PATH
         echo "::add-path::C:\msys64"
         ls C:\msys64
         ls C:\msys64\usr
         ls C:\msys64\usr\bin
         echo "Path is "
-        echo ${PATH}
+        echo $PATH
         cd ${HOME}
         choco install msys2
         refreshenv
