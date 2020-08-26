@@ -32,4 +32,4 @@ jobs:
       run: |
         C:\msys64\usr\bin\pacman.exe -Ss zlib
         C:\msys64\usr\bin\pacman.exe -Ss fftw
-        make ARCH=WINDOWS
+        C:\msys64\mingw32-make.exe ARCH=WINDOWS
