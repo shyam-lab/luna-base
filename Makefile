@@ -1,7 +1,7 @@
 
 include Makefile.inc
 
-TARGETS = luna libluna destrat behead merge
+TARGETS = luna destrat behead merge
 
 SRCS = globals.cpp eval.cpp cmddefs.cpp \
         $(wildcard edf/*.cpp) \
