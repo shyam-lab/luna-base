@@ -30,5 +30,4 @@ jobs:
       - name: Make
         run: |
           ls /mingw64/bin
-          which make
           mingw32-make.exe ARCH=WINDOWS
