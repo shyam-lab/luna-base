@@ -31,4 +31,4 @@ jobs:
         run: |
           ls /mingw64/bin
           which make
-          mingw64-make.exe ARCH=WINDOWS
+          mingw32-make.exe ARCH=WINDOWS
