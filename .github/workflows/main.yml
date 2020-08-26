@@ -18,14 +18,13 @@ jobs:
         ls C:\msys64
         ls C:\msys64\usr
         ls C:\msys64\usr\bin
-        echo "Path is "
-        echo $PATH
+        echo "Path is " $PATH
         cd ${HOME}
         choco install msys2
         refreshenv
-        pacman -S mingw-w64-x86_64-zlib
-        pacman -S mingw-w64-x86_64-toolchain
-        pacman -S fftw3-dev
+        C:\msys64\usr\bin\pacman.exe -S mingw-w64-x86_64-zlib
+        C:\msys64\usr\bin\pacman.exe -S mingw-w64-x86_64-toolchain
+        C:\msys64\usr\bin\pacman.exe -S fftw3-dev
         cd ${GITHUB_WORKSPACE}
         echo ${GITHUB_WORKSPACE}
     - name: Make
