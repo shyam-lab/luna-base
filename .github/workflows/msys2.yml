@@ -22,7 +22,7 @@ jobs:
         with:
           msystem: MINGW64
           update: true
-          install: git mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib  mingw-w64-x86_64-fftw
+          install: git mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib mingw-w64-x86_64-fftw
       - name: CI-Build
         run: |
           echo 'Running in MSYS2!'
