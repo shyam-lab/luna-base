@@ -25,8 +25,11 @@ jobs:
         C:\msys64\usr\bin\pacman.exe -S --noconfirm mingw-w64-x86_64-zlib
         C:\msys64\usr\bin\pacman.exe -S --noconfirm mingw-w64-x86_64-toolchain
         C:\msys64\usr\bin\pacman.exe -S --noconfirm mingw-w64-x86_64-fftw
+        pacman -Ss fftw
         cd ${GITHUB_WORKSPACE}
         echo ${GITHUB_WORKSPACE}
     - name: Make
       run: |
+        pacman -Ss zlib
+        pacman -Ss fftw
         make ARCH=WINDOWS
