@@ -31,3 +31,5 @@ jobs:
         run: |
           ls /mingw64/bin
           mingw32-make.exe ARCH=WINDOWS
+          ls
+          ./luna
