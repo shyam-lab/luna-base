@@ -27,6 +27,7 @@ jobs:
         run: |
           echo 'Running in MSYS2!'
       - uses: msys2/setup-msys2@v2
+      - shell: cmd
       - name: Make
         run: |
           msys2 -c 'mingw64-make.exe ARCH=WINDOWS'
