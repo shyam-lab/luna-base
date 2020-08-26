@@ -11,10 +11,13 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install fftw
+    - name: Add Path
       run: |
         echo $PATH
         echo "::add-path::C:\msys64\usr\bin\"
+    - uses: actions/checkout@v2
+    - name: Install fftw
+      run: |
         pacman.exe 
         ls C:\msys64
         ls C:\msys64\usr
