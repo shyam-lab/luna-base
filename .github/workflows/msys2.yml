@@ -28,4 +28,5 @@ jobs:
           echo 'Running in MSYS2!'
       - name: Make
         run: |
+          choco install make
           make ARCH=WINDOWS
