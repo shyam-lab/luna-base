@@ -29,4 +29,4 @@ jobs:
       - uses: msys2/setup-msys2@v2
       - name: Make
         run: |
-          mysys -c 'mingw64-make.exe ARCH=WINDOWS'
+          msys2 -c 'mingw64-make.exe ARCH=WINDOWS'
