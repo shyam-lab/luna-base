@@ -14,7 +14,8 @@ jobs:
     - name: Install fftw
       run: |
         echo $PATH
-        echo "::add-path::C:\msys64"
+        echo "::add-path::C:\msys64\usr\bin\"
+        pacman.exe 
         ls C:\msys64
         ls C:\msys64\usr
         ls C:\msys64\usr\bin
