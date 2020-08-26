@@ -11,10 +11,17 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Install msys2
+      run: | 
+        ls C:\msys64\usr\bin\
+        choco install msys2
+        refreshenv 
+    - uses: actions/checkout@v2
     - name: Add Path
       run: |
         echo $PATH
         echo "::add-path::C:\msys64\usr\bin\"
+        ls C:\msys64\usr\bin\
     - uses: actions/checkout@v2
     - name: Install fftw
       run: |
@@ -27,4 +34,4 @@ jobs:
         echo ${GITHUB_WORKSPACE}
     - name: Make
       run: |
-        make.exe ARCH=WINDOWS
+        mingw-w64-x86_64-make.exe ARCH=WINDOWS
