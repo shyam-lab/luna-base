@@ -26,6 +26,7 @@ jobs:
       - name: CI-Build
         run: |
           echo 'Running in MSYS2!'
+      - uses: msys2/setup-msys2@v2
       - name: Make
         run: |
-          mingw64-make.exe ARCH=WINDOWS
+          mysys -c 'mingw64-make.exe ARCH=WINDOWS'
