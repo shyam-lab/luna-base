@@ -29,6 +29,6 @@ jobs:
       - uses: msys2/setup-msys2@v2
       - name: Make
         run: |
-          which mingw64-make
+          ls /mingw64/bin
           which make
           mingw64-make.exe ARCH=WINDOWS
