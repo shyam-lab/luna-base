@@ -45,7 +45,9 @@ jobs:
           release_name: Win_Release ${{ github.ref }}
           draft: false
           prerelease: false
-      - run: ls -lrt
+      - run: |
+          ls -lrt
+          zip win-luna.zip *.exe
       - name: Upload Release Asset
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
