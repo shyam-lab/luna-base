@@ -19,8 +19,10 @@ jobs:
           msystem: MINGW64
           update: true
           install: gzip tar zip git mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib mingw-w64-x86_64-fftw
-          run: |
-            ls /mingw64/bin/ 
+      - uses: actions/checkout@v2
+      - run: |
+          git describe --dirty  
+          ls /mingw64/bin/ 
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -37,7 +39,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./win_luna.zip
           asset_name: win_luna.zip
           asset_content_type: application/zip
