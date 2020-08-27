@@ -19,10 +19,8 @@ jobs:
           msystem: MINGW64
           update: true
           install: gzip tar zip git mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib mingw-w64-x86_64-fftw
-      - uses: msys2/setup-msys2@v2
-      - name: Make
-        run: |
-          ls /mingw64/bin/ 
+          run: |
+            ls /mingw64/bin/ 
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
