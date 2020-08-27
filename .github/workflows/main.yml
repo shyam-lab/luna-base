@@ -18,7 +18,7 @@ jobs:
         with:
           msystem: MINGW64
           update: true
-          install: zip git mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib mingw-w64-x86_64-fftw
+          install: git mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib mingw-w64-x86_64-fftw
       - uses: msys2/setup-msys2@v2
       - name: Make
         run: |
@@ -34,7 +34,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          release_name: Win_Release ${{ github.ref }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
@@ -72,7 +72,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          release_name: Mac_Release ${{ github.ref }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
@@ -111,7 +111,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          release_name: Ubuntu_Release ${{ github.ref }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
