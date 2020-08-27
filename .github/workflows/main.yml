@@ -7,6 +7,24 @@ on:
     branches: master
 
 jobs:
+  windows-build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: git mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib mingw-w64-x86_64-fftw
+      - uses: msys2/setup-msys2@v2
+      - name: Make
+        run: |
+          ls /mingw64/bin
+          mingw32-make.exe ARCH=WINDOWS
+          ls *.exe
   macos-build:
     runs-on: macos-latest
     steps:
