@@ -21,7 +21,6 @@ jobs:
           install: gzip tar zip git mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib mingw-w64-x86_64-fftw
       - uses: actions/checkout@v2
       - run: |
-          git describe --dirty  
           ls /mingw64/bin/ 
       - name: Create Release
         id: create_release
