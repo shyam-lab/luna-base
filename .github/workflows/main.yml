@@ -25,7 +25,7 @@ jobs:
           zip win_luna.zip *.exe
       - uses: actions/upload-artifact@v2
         with:
-          name: win-artifacts
+          name: win-luna.zip
           path: ./win_luna.zip
   release:
     runs-on: ubuntu-latest
