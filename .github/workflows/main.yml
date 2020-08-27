@@ -7,28 +7,41 @@ on:
     branches: master
 
 jobs:
-  win_build:
-    runs-on: windows-latest
+  macos-build:
+    runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Add Path
-      run: |
-        echo $PATH
-        echo "::add-path::C:\msys64\usr\bin\"
-        ls C:\msys64\usr\bin\
+      - uses: actions/checkout@v2
+      - name: Install fftw
+        run: |
+          ls -lrt
+          pwd
+          echo "github workspace is"
+          echo ${GITHUB_WORKSPACE}
+          echo "home is"
+          echo ${HOME}
+          cd $HOME
+          wget http://www.fftw.org/fftw-3.3.8.tar.gz
+          tar -xzvf fftw-3.3.8.tar.gz
+          cd fftw-3.3.8
+          ./configure --enable-shared --prefix=${HOME}/fftw-3.3.8/
+          make
+          make install
+          cd ${GITHUB_WORKSPACE}
+      - name: Make
+        run: make arch=MAC FFTW=${HOME}/fftw-3.3.8
+  linux-build:
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v2
     - name: Install fftw
       run: |
-        echo "Path is " ${PATH}
         cd ${HOME}
-        pacman.exe -S --noconfirm mingw-w64-x86_64-zlib
-        pacman.exe -S --noconfirm mingw-w64-x86_64-toolchain
-        pacman.exe -S --noconfirm mingw-w64-x86_64-fftw
+        wget http://www.fftw.org/fftw-3.3.8.tar.gz
+        tar -xzvf fftw-3.3.8.tar.gz
+        cd fftw-3.3.8
+        ./configure --enable-shared --prefix=${HOME}/fftw-3.3.8/
+        make
+        make install
         cd ${GITHUB_WORKSPACE}
-        echo ${GITHUB_WORKSPACE}
-    - name: Make
-      run: |
-        ls C:\msys64\usr\bin\
-        echo "Which make is"
-        which make
-        mingw-w64-x86_64-make.exe ARCH=WINDOWS
+    - name: make
+      run: make FFTW=${HOME}/fftw-3.3.8
