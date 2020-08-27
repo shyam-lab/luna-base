@@ -23,13 +23,9 @@ jobs:
           msystem: MINGW64
           update: true
           install: git mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib mingw-w64-x86_64-fftw
-      - name: CI-Build
-        run: |
-          echo 'Running in MSYS2!'
       - uses: msys2/setup-msys2@v2
       - name: Make
         run: |
           ls /mingw64/bin
           mingw32-make.exe ARCH=WINDOWS
-          ls
-          ./luna
+          ls *.exe 
