@@ -18,15 +18,15 @@ jobs:
         with:
           msystem: MINGW64
           update: true
-          install: git mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib mingw-w64-x86_64-fftw
+          install: zip git mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib mingw-w64-x86_64-fftw
       - uses: msys2/setup-msys2@v2
       - name: Make
         run: |
           ls /mingw64/bin
           mingw32-make.exe ARCH=WINDOWS
           ls *.exe
-      - name: Zip executables
-        run: Compress-Archive *.exe win_luna.zip
+          zip win_luna.zip *.exe
+          ls *.zip
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -103,6 +103,7 @@ jobs:
         run: |
           make FFTW=${HOME}/fftw-3.3.8
           tar cvzf ubuntu_luna.tar luna behead destrat
+          ls -lrt
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -120,6 +121,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./ubuntu_luna.tar.gz
+          asset_path: ubuntu_luna.tar.gz
           asset_name: ubuntu_luna.tar.gz
           asset_content_type: application/gzip
