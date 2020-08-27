@@ -18,23 +18,23 @@ jobs:
         with:
           msystem: MINGW64
           update: true
-          install: gzip tar zip git mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib mingw-w64-x86_64-fftw
+          install: zip mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib mingw-w64-x86_64-fftw
       - uses: actions/checkout@v2
       - run: |
-          ls /mingw64/bin/
           mingw32-make.exe ARCH=WINDOWS 
-          which tar
-          which gzip
-          which zip
           zip win_luna.zip *.exe
+      - uses: actions/upload-artifact@v2
+        with:
+          name: win-artifacts
+          path: ./win_luna.zip
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Win_Release ${{ github.ref }}
+          tag_name: ${{ github.sha }}
+          release_name: Win_Release ${{ github.sha }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
