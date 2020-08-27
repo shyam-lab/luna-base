@@ -1,7 +1,10 @@
 
 include Makefile.inc
-
-TARGETS = luna destrat behead merge
+ifeq ($(ARCH),WINDOWS)
+  TARGETS = luna destrat behead
+else
+  TARGETS = luna libluna destrat behead merge
+endif
 
 SRCS = globals.cpp eval.cpp cmddefs.cpp \
         $(wildcard edf/*.cpp) \
