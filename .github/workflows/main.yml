@@ -99,6 +99,7 @@ jobs:
           ls -lrt win-luna.zip/
           mv mac-luna.tar.gz/mac-luna.tar.gz mac_luna.tar.gz
           mv ubuntu-luna.tar.gz/ubuntu-luna.tar.gz ubuntu_luna.tar.gz
+          mv win-luna.zip/win-luna.zip win_luna.zip
       - name: Upload Release Asset Mac
         id: upload-release-asset-mac
         uses: actions/upload-release-asset@v1
@@ -116,6 +117,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: download_artifacts/ubuntu-luna.tar.gz
-          asset_name: ubuntu-luna.tar.gz
+          asset_path: ubuntu_luna.tar.gz
+          asset_name: ubuntu_luna.tar.gz
           asset_content_type: application/gzip
+      - name: Upload Release Asset Win
+        id: upload-release-asset-win
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: win_luna.zip
+          asset_name: win_luna.zip
+          asset_content_type: application/zip
