@@ -7,48 +7,6 @@ on:
     branches: master
 
 jobs:
-  windows-build:
-    runs-on: windows-latest
-    defaults:
-      run:
-        shell: msys2 {0}
-    steps:
-      - uses: actions/checkout@v2
-      - uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW64
-          update: true
-          install: zip mingw-w64-x86_64-toolchain mingw-w64-x86_64-zlib mingw-w64-x86_64-fftw
-      - uses: actions/checkout@v2
-      - run: |
-          mingw32-make.exe ARCH=WINDOWS 
-          zip win-luna.zip *.exe
-      - uses: actions/upload-artifact@v2
-        with:
-          name: win-luna.zip
-          path: ./win-luna.zip
-  macos-build:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install fftw
-        run: |
-          cd $HOME
-          wget http://www.fftw.org/fftw-3.3.8.tar.gz
-          tar -xzvf fftw-3.3.8.tar.gz
-          cd fftw-3.3.8
-          ./configure --enable-shared --prefix=${HOME}/fftw-3.3.8/
-          make
-          make install
-          cd ${GITHUB_WORKSPACE}
-      - name: Make
-        run: |
-             make arch=MAC FFTW=${HOME}/fftw-3.3.8
-             tar cvzf mac-luna.tar.gz luna behead destrat
-      - uses: actions/upload-artifact@v2
-        with:
-          name: mac-luna.tar.gz
-          path: mac-luna.tar.gz
   linux-build:
     runs-on: ubuntu-latest
     steps:
@@ -79,6 +37,11 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           path: /home/runner/work/luna-base/luna-base/download_artifacts/
+          
+      - run: |
+          echo ${{steps.download.outputs.download-path}}
+          cd ${{steps.download.outputs.download-path}}
+          ls -lrt
       - uses: actions/checkout@v2
       - name: Create Release
         id: create_release
@@ -90,9 +53,6 @@ jobs:
           release_name: Win_Release ${{ github.ref }}
           draft: false
           prerelease: false
-      - run: |
-          cd /home/runner/work/luna-base/luna-base/download_artifacts/
-          ls -lrt
       - name: Upload Release Asset Win
         id: upload-release-asset-win
         uses: actions/upload-release-asset@v1
