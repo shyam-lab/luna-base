@@ -96,8 +96,9 @@ jobs:
           cd ${{steps.download.outputs.download-path}}
           ls -lrt
           ls -lrt mac-luna.tar.gz/
-          ls -lrt ubuntu-luna.tar.gz/
-          tar cvzf mac_luna.tar.gz mac-luna.tar.gz/*
+          ls -lrt win-luna.zip/
+          mv mac-luna.tar.gz/mac-luna.tar.gz mac_luna.tar.gz
+          mv ubuntu-luna.tar.gz/ubuntu-luna.tar.gz ubuntu_luna.tar.gz
       - name: Upload Release Asset Mac
         id: upload-release-asset-mac
         uses: actions/upload-release-asset@v1
