@@ -96,16 +96,6 @@ jobs:
           release_name: Win_Release ${{ github.ref }}
           draft: false
           prerelease: false
-      - name: Upload Release Asset Win
-        id: upload-release-asset-win
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: win-luna.zip
-          asset_name: win-luna.zip
-          asset_content_type: application/zip
       - name: Upload Release Asset Mac
         id: upload-release-asset-mac
         uses: actions/upload-release-asset@v1
