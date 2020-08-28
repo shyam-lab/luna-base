@@ -46,6 +46,7 @@ jobs:
           draft: false
           prerelease: false
       - run: |
+          cd ${GITHUB_WORKSPACE}
           ls -lrt
           zip win-luna.zip *.exe
       - name: Upload Release Asset
