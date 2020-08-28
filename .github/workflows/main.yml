@@ -79,7 +79,7 @@ jobs:
       - uses: actions/download-artifact@v2
         id: download
         with:
-          path: /home/runner/work/luna-base/luna-base/download_artifacts/
+          path: .
           
       - run: |
           echo ${{steps.download.outputs.download-path}}
@@ -96,6 +96,10 @@ jobs:
           release_name: Win_Release ${{ github.ref }}
           draft: false
           prerelease: false
+      - run: |
+          echo ${{steps.download.outputs.download-path}}
+          cd ${{steps.download.outputs.download-path}}
+          ls -lrt
       - name: Upload Release Asset Mac
         id: upload-release-asset-mac
         uses: actions/upload-release-asset@v1
@@ -103,7 +107,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./download_artifacts/mac-luna.tar.gz
+          asset_path: mac-luna.tar.gz
           asset_name: mac-luna.tar.gz
           asset_content_type: application/gzip
       - name: Upload Release Asset Ubuntu
