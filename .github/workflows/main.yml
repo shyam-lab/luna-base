@@ -78,7 +78,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
         with:
-          path: /home/runner/work/luna-base/luna-base/artifacts/
+          path: /home/runner/work/luna-base/luna-base/download_artifacts/
       - uses: actions/checkout@v2
       - name: Create Release
         id: create_release
@@ -91,7 +91,7 @@ jobs:
           draft: false
           prerelease: false
       - run: |
-          cd /home/runner/work/luna-base/luna-base/artifacts/
+          cd /home/runner/work/luna-base/luna-base/download_artifacts/
           ls -lrt
       - name: Upload Release Asset Win
         id: upload-release-asset-win
