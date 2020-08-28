@@ -103,8 +103,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: mac-luna.tar.gz
-          asset_name: win-luna.tar.gz
+          asset_path: ./download_artifacts/mac-luna.tar.gz
+          asset_name: mac-luna.tar.gz
           asset_content_type: application/gzip
       - name: Upload Release Asset Ubuntu
         id: upload-release-asset-ubuntu 
@@ -113,6 +113,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ubuntu-luna.tar.gz
+          asset_path: download_artifacts/ubuntu-luna.tar.gz
           asset_name: ubuntu-luna.tar.gz
           asset_content_type: application/gzip
